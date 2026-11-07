@@ -1,0 +1,14 @@
+{
+  "name": "graph-notes",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A note-taking app where your notes live in a physics simulation.",
+  "type": "module",
+  "scripts": {
+    "start": "node serve.mjs",
+    "test": "node --test test/"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

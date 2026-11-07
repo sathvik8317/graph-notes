@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graph Notes</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg stroke='%236d5efc' stroke-width='2'%3E%3Cline x1='8' y1='9' x2='22' y2='12'/%3E%3Cline x1='22' y1='12' x2='13' y2='24'/%3E%3Cline x1='8' y1='9' x2='13' y2='24'/%3E%3C/g%3E%3Ccircle cx='8' cy='9' r='4' fill='%23f2672e'/%3E%3Ccircle cx='22' cy='12' r='5' fill='%236d5efc'/%3E%3Ccircle cx='13' cy='24' r='3.5' fill='%235b7fbf'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="logo" aria-hidden="true"></span>Graph Notes</div>
+      <button id="newNote" class="btn primary">+ New note</button>
+      <input id="search" class="search" type="search" placeholder="Search notes…" aria-label="Search notes">
+      <ul id="noteList" class="note-list" aria-label="Notes"></ul>
+      <details class="settings">
+        <summary>Graph settings</summary>
+        <label class="check"><input type="checkbox" id="gravityOn"> Recency gravity</label>
+        <label class="slider"><span>Half-life <output id="halfLifeVal"></output></span>
+          <input type="range" id="halfLife" min="1" max="120" step="1"></label>
+        <label class="slider"><span>Link distance <output id="linkDistVal"></output></span>
+          <input type="range" id="linkDist" min="20" max="200" step="1"></label>
+        <label class="slider"><span>Repel <output id="repelVal"></output></span>
+          <input type="range" id="repel" min="20" max="600" step="5"></label>
+      </details>
+      <div class="side-footer">
+        <button id="exportBtn" class="btn ghost small">Export</button>
+        <label class="btn ghost small">Import<input type="file" id="importFile" accept="application/json,.json" hidden></label>
+        <button id="resetBtn" class="btn ghost small">Reset demo</button>
+      </div>
+    </aside>
+
+    <main class="graph-pane">
+      <canvas id="graph" aria-label="Note graph"></canvas>
+      <div class="graph-hud">
+        <button id="toggleSidebar" class="btn icon mobile-only" aria-label="Notes list">☰</button>
+        <span class="hint">Drag a note onto another to link · double-click to pin · scroll to zoom</span>
+        <button id="fitBtn" class="btn icon" title="Fit graph" aria-label="Fit graph">⤢</button>
+      </div>
+      <div class="timeline">
+        <button id="playBtn" class="btn">▶ Replay</button>
+        <input type="range" id="timeSlider" min="0" max="1000" value="1000" step="0.1" aria-label="Timeline">
+        <span id="timeLabel" class="time-label">Now</span>
+        <button id="exitReplay" class="btn ghost" hidden>Exit</button>
+      </div>
+      <div class="replay-badge">Replay: read-only</div>
+    </main>
+
+    <section class="editor-pane" id="editorPane">
+      <div class="editor-empty" id="editorEmpty">
+        <p>Select a note in the graph or list,<br>or create a new one.</p>
+      </div>
+      <div class="editor" id="editor" hidden>
+        <div class="editor-head">
+          <input id="titleInput" class="title-input" spellcheck="false" aria-label="Note title">
+          <div class="editor-tools">
+            <button id="modeBtn" class="btn ghost small">Preview</button>
+            <button id="deleteBtn" class="btn ghost small danger">Delete</button>
+            <button id="closeEditor" class="btn icon" aria-label="Close note">✕</button>
+          </div>
+        </div>
+        <div class="meta" id="noteMeta"></div>
+        <div class="editor-body">
+          <textarea id="bodyInput" placeholder="Write here. Type [[ to link another note." aria-label="Note body"></textarea>
+          <div id="preview" class="preview" hidden></div>
+          <ul id="suggest" class="suggest" hidden></ul>
+        </div>
+        <div class="backlinks">
+          <h4>Linked from</h4>
+          <ul id="backlinks"></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
