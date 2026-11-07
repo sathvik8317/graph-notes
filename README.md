@@ -8,6 +8,28 @@ A note-taking app where your notes live inside a physics simulation.
 
 Plus: Markdown with `[[wikilinks]]` (`[[Title]]`, `[[Title#Heading]]`, `[[Title|alias]]`), `[[` autocomplete, backlinks, rename that rewrites links everywhere, pinning (double-click), search, JSON export/import, light/dark themes, and a mobile layout.
 
+## What it looks like
+
+![Graph Notes in light mode: note list on the left, the note graph in the middle, and the Welcome note open in the editor on the right](docs/screenshots/overview-light.png)
+
+The screen has three panes:
+
+- **Left, the note list:** every note, most recently touched first. The coloured dot matches the note's colour in the graph. Below the list are search, **Graph settings** (recency gravity on/off, half-life, link distance, repel strength) and Export / Import / Reset demo.
+- **Middle, the graph:** each note is a circle and each `[[wikilink]]` is a line. Bigger circles have more links. Warm orange notes were touched recently and sit near the centre, while cool blue ones haven't been opened in a while and drift to the edge. Notes with no links (like *Unlinked thought*) float on their own. The selected note has a ring around it. The **⤢** button fits the whole graph in view, and the timeline bar along the bottom runs the replay.
+- **Right, the editor:** the note's title, when it was created and last edited, and how many links it makes. **Preview** / **Edit** switches between raw Markdown and the rendered note. **Linked from** at the bottom lists the backlinks.
+
+The theme follows your system setting. Here's dark mode, with a note in preview and its four backlinks:
+
+![Graph Notes in dark mode with the Recency gravity note rendered in the editor and four backlinks listed](docs/screenshots/editor-dark.png)
+
+Drag the timeline slider, or press **Replay**, to see the graph as it was on an earlier date. Notes that didn't exist yet are hidden, and the rest are coloured by how new they were on that date. The camera follows the graph as it grows. Editing is turned off during a replay (note the *Replay: read-only* badge) until you press **Exit**.
+
+![Replay at Sep 2, 2026: a smaller, earlier version of the graph with a read-only badge at the top](docs/screenshots/replay.png)
+
+On a phone the graph fills the screen. **☰** slides the note list in from the left, and opening a note slides the editor up from the bottom. When zoomed out, only the big hub notes keep their labels, and the rest fade in as you zoom.
+
+<img src="docs/screenshots/mobile.png" alt="Graph Notes on a phone: the graph fills the screen with the menu and fit buttons at the top and the replay bar at the bottom" width="260">
+
 ## Run it
 
 No dependencies. Node 20+:
